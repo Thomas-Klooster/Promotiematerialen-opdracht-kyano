@@ -8,9 +8,9 @@ import logo from '@/assets/images/dfm-logo.png'
         theme="light"
         permanent
       >
-        <img :src="logo" alt="de fitte medewerker logo" class="pt-6 px-6">
-        <v-list lines="two" class="px-4">
-            <v-list-item prepend-icon="mdi-view-dashboard-outline" title="Dashboard"></v-list-item>
+        <img :src="logo" alt="de fitte medewerker logo" class="pb-3 pt-6 px-6">
+        <v-list lines="two" class="px-3">
+            <v-list-item height="61" prepend-icon="mdi-view-dashboard-outline" title="Dashboard"></v-list-item>
             <v-list-item prepend-icon="mdi-meditation" title="Activiteiten"></v-list-item>
             <v-list-item prepend-icon="mdi-briefcase-outline" title="Bedrijfspagina's"></v-list-item>
             <v-list-item prepend-icon="mdi-account-circle-outline" title="Accountgegevens"></v-list-item>
@@ -34,5 +34,14 @@ import logo from '@/assets/images/dfm-logo.png'
 </template>
 
 <style scoped>
-
+:deep(.v-list-item-title) {
+  font-weight: 600;
+  color: #4E4E4E;
+}
+:deep(.v-list-item__spacer) {
+   --v-list-prepend-gap: 1rem;
+}
+:deep(.v-list-item--density-default.v-list-item--two-line){
+  min-height: 61px;
+}
 </style>
