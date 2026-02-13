@@ -9,16 +9,11 @@ const tab = ref("one");
 
 <template>
   <div class="main-content">
-    <v-tabs
-      v-model="tab"
-      class="dfm-tabs"
-      align-tabs="start"
-      height="32"
-      slider-color="#e6007e"
-    >
-      <v-tab value="one">Promotiematerialen</v-tab>
-      <v-tab value="two">Instellingen</v-tab>
+    <v-tabs align-tabs="start" height="32" class="dfm-tabs" slider-color="#e6007e">
+      <v-tab :to="{ name: 'PromotieMaterialenEen' }">Promotiematerialen</v-tab>
+      <v-tab :to="{ name: 'PromotieMaterialenTwee' }">Instellingen</v-tab>
     </v-tabs>
+
     <div class="dmf-heading">
       <div class="mb-3 font-weight-medium dfm-header">
         Promotiematerialen

@@ -1,19 +1,53 @@
 <script setup>
-import { ref } from "vue";
-const tab = ref("one");
-</script>
+import { computed, ref } from "vue";
+import PromoMaterialRow from "@/components/PromoMaterialRow.vue";
 
+import poster1 from "@/assets/images/Programmaposter.png";
+import poster2 from "@/assets/images/poster2.png";
+const tab = ref("one");
+const selected = ref([]);
+const items = ref([
+  {
+    id: 1,
+    title: "Uitnodigingsmail",
+    subtitle: "Tekst om te kopiëren en als mailconcept te gebruiken.",
+    status: "Gepubliceerd",
+    statusColor: "green",
+    thumb: null,
+  },
+  {
+    id: 2,
+    title: "Poster/Flyer",
+    subtitle: "Visueel promotiemateriaal per activiteit.",
+    status: "Gepubliceerd",
+    statusColor: "green",
+    thumb: poster2,
+  },
+  {
+    id: 3,
+    title: "Deurposter",
+    subtitle: "Informatief materiaal per activiteit-datum en tijdslot.",
+    status: "Gepubliceerd",
+    statusColor: "green",
+    thumb: poster2,
+  },
+  {
+    id: 4,
+    title: "Intekenlijst",
+    subtitle: "Planninglijst voor 1-op-1 activiteiten met tijdsloten en deelnemers.",
+    status: "Gearchiveerd",
+    statusColor: "grey",
+    thumb: poster1,
+  },
+]);
+
+const bulkDisabled = computed(() => selected.value.length === 0);
+</script>
 <template>
   <div class="main-content">
-    <v-tabs
-      v-model="tab"
-      class="dfm-tabs"
-      align-tabs="start"
-      height="32"
-      slider-color="#e6007e"
-    >
-      <v-tab value="one">Promotiematerialen</v-tab>
-      <v-tab value="two">Instellingen</v-tab>
+    <v-tabs align-tabs="start" height="32" class="dfm-tabs" slider-color="#e6007e">
+      <v-tab :to="{ name: 'PromotieMaterialenEen' }">Promotiematerialen</v-tab>
+      <v-tab :to="{ name: 'PromotieMaterialenTwee' }">Instellingen</v-tab>
     </v-tabs>
     <div class="dmf-heading">
       <div class="mb-3 font-weight-medium dfm-header">
@@ -23,6 +57,28 @@ const tab = ref("one");
       <div class="text-subtitle-1 dmf-subtitle">
         Sanday Groningen
       </div>
+    </div>
+    <v-card class="materials-card pa-4" variant="outlined" rounded="xl">
+      <div class="d-flex flex-column ga-3">
+        <PromoMaterialRow
+          v-for="item in items"
+          :key="item.id"
+          :item="item"
+          v-model="selected"
+        />
+      </div>
+    </v-card>
+
+    <!-- bulk action -->
+    <div class="mt-6" style="max-width: 280px;">
+      <v-select
+        variant="outlined"
+        rounded="lg"
+        hide-details
+        label="Bulk actie uitvoeren"
+        :items="['Archiveren', 'Publiceren']"
+        :disabled="bulkDisabled"
+      />
     </div>
   </div>
 
@@ -51,6 +107,11 @@ const tab = ref("one");
 .dfm-tabs :deep(.v-tab.v-tab--selected) {
   color: #E5007D;
 }
+
+.dmf-heading {
+  margin-bottom: 2.5rem;
+}
+
 .dfm-header {
   font-family: 'Dosis';
   font-size: 2.5rem;
@@ -65,5 +126,11 @@ const tab = ref("one");
 
 .main-content {
   margin: 3rem 0 0 5.5rem;
+}
+
+.materials-card {
+  border-color: rgba(0,0,0,0.10);
+  background: #fff;
+  max-width: 63.625rem;
 }
 </style>
