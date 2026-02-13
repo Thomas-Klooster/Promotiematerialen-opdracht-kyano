@@ -12,4 +12,5 @@ import AppSidebar from "@/components/AppSidebar.vue";
 </template>
 
 <style scoped>
+
 </style>
