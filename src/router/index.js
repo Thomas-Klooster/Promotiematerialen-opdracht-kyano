@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import PromotieMaterialenEen from "../views/PromotieMaterialenEen.vue";
+import PromotieMaterialenTwee from "../views/PromotieMaterialenTwee.vue";
 
 const routes = [
-  { path: "/", name: "home", component: HomeView },
+  { path: "/PromotieMaterialenEen", name: "PromotieMaterialenEen", component: PromotieMaterialenEen },
+  { path: "/PromotieMaterialenTwee", name: "PromotieMaterialenTwee", component: PromotieMaterialenTwee },
 ];
 
 export default createRouter({
